@@ -2,7 +2,6 @@ package com.example.electronicservice.services;
 
 import com.example.electronicservice.dao.AttributeDao;
 import com.example.electronicservice.models.Attribute;
-import com.example.electronicservice.models.Equipment;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -18,6 +17,10 @@ public class AttributeService {
     AttributeDao attributeDao;
 
     public void save(Attribute attribute){ attributeDao.save(attribute);
+    }
+
+    public Optional<List<Attribute>> getAllByEquipmentId(Long id){
+        return attributeDao.findByEquipment_id(id);
     }
 
     public List<Attribute> findAll(){

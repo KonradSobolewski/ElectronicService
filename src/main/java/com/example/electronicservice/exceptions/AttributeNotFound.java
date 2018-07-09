@@ -4,12 +4,13 @@ import com.example.electronicservice.serviceUtils.ExceptionReason;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
-@ResponseStatus(value = HttpStatus.NOT_FOUND,reason = ExceptionReason.EquipmentNotFound)
-public class EquipmentNotFound extends Exception {
-    public EquipmentNotFound(){
+@ResponseStatus(value = HttpStatus.NOT_FOUND,reason = ExceptionReason.AttributeNotFound)
+public class AttributeNotFound extends Exception{
+    public AttributeNotFound(){
         super("Error");
+
     }
-    public EquipmentNotFound(String message){
+    public AttributeNotFound(String message){
         super(message);
     }
 }

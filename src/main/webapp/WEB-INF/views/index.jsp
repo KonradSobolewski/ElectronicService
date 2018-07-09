@@ -16,6 +16,7 @@
     <link href="static/css/bootstrap.min.css" rel="stylesheet">
     <link href="static/css/style.css" rel="stylesheet">
     <script src="static/js/bootstrap.min.js"></script>
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
 
 </head>
 <body>
@@ -29,9 +30,9 @@
             <div class="navbar-nav">
                 <a class="nav-item nav-link" href="allEquipments">All Equipments</a>
                 <a class="nav-item nav-link" href="newEquipment">New Equipments</a>
-                <div class="btn-group" style="position: absolute; right: 40px;">
+                <div class="btn-group" style="position: absolute; right: 60px;">
                     <button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Options &#xe115
+                        Options
                     </button>
                     <div class="dropdown-menu">
                         <a class="dropdown-item" href="settings">User Settings</a>
@@ -89,7 +90,7 @@
                                     </a>
                                 </td>
                                 <td>
-                                    <a href="modifyAttributes?id=${equipment.id}">
+                                    <a href="allAttributes?id=${equipment.id}">
                                         <span class="btn btn-info">Attributes</span>
                                     </a>
                                 </td>
@@ -129,24 +130,18 @@
                               </div>
                             <input type="text" class="form-control" name="name" value="${equipment.name}">
                         </div>
-                    </div>
-                      <div class="form-group  ">
                           <div class="input-group mb-3">
                               <div class="input-group-prepend">
                                   <span class="input-group-text" id="basic-addon5">Category</span>
                               </div>
                               <input type="text" class="form-control" name="category.name" value="${equipment.category.name}">
                           </div>
-                      </div>
-                      <div class="form-group  ">
                           <div class="input-group mb-3">
                               <div class="input-group-prepend">
                                   <span class="input-group-text" id="basic-addon2">Description</span>
                               </div>
                             <input type="text" class="form-control" name="description" value="${equipment.description}">
                         </div>
-                    </div>
-                      <div class="form-group  ">
                           <div class="input-group mb-3">
                               <div class="input-group-prepend">
                                   <span class="input-group-text" id="basic-addon3">Status</span>
@@ -156,12 +151,62 @@
                                 <option value="WRONG">WRONG</option>
                             </select>
                         </div>
-                    </div>
-                    <div class="form-group">
                         <input type="submit" class="btn btn-lg btn-info btn-block"  value="Save">
                     </div>
                 </form>
             </div>
+        </c:when>
+        <c:when test="${mode == 'MODE_ATTRIBUTE'}">
+        <div class="container text-center" id="equipmentDiv">
+            <h2>Attributes of Equipment</h2>
+            <hr>
+            <div class="table-responsive">
+                <table class="table table-striped table-hover table-light">
+                    <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Value</th>
+                        <th>Equipment</th>
+                        <th></th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <c:forEach var="attribute" items="${attributes}">
+                        <tr>
+                            <td>${attribute.name}</td>
+                            <td>${attribute.value}</td>
+                            <td>${attribute.equipment.id}</td>
+                            <td>
+                                <a href="deleteAttribute?id=${attribute.id}&equipment_id=${attribute.equipment.id}">
+                                    <span class="btn btn-info">Delete</span>
+                                </a>
+                            </td>
+                        </tr>
+                    </c:forEach>
+                    </tbody>
+                </table>
+            </div>
+            <form class="form-horizontal inputForm" method="POST" action="createAttribute" align="center">
+                <h5>New attribute</h5>
+                <input type="hidden" name="attribute.id" value="${attribute.id}">
+                <input type="hidden" name="equipment.id" value="<%= request.getParameter("id") %>">
+                <div class="form-group ">
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" id="basic-addon10">Nazwa</span>
+                        </div>
+                        <input type="text" class="form-control" name="name" value="${attribute.name}">
+                    </div>
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" id="basic-addon8">Opis</span>
+                        </div>
+                        <input type="text" class="form-control" name="value" value="${attribute.value}">
+                    </div>
+                    <input type="submit" class="btn btn-lg btn-info btn-block"  value="Save">
+                </div>
+            </form>
+        </div>
         </c:when>
     </c:choose>
     <footer >

@@ -8,4 +8,7 @@ public class ServiceUri {
     public final static String DELETE = "/deleteEquipment";
     public final static String SAVE = "/saveEquipment";
     public final static String NEW = "/newEquipment";
+    public static final String ATTRIBUTES = "/allAttributes" ;
+    public static final String CREATEATR = "/createAttribute";
+    public static final String DELETEATR = "/deleteAttribute" ;
 }
