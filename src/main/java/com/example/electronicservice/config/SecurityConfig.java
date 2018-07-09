@@ -34,7 +34,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     }
 
     @Override
-    protected void configure(AuthenticationManagerBuilder auth) throws Exception{
+    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
         auth.authenticationProvider(authProvider());
     }
 
@@ -51,16 +51,16 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
         http.csrf().disable();
         http.authorizeRequests()
-                    .antMatchers("**"+RestUri.state+"/**")
-                    .authenticated()
-                    .anyRequest()
-                    .permitAll()
-                    .and()
+                .antMatchers("**" + RestUri.state + "/**")
+                .authenticated()
+                .anyRequest()
+                .permitAll()
+                .and()
                 .formLogin()
-                    .loginPage("/login")
-                    .permitAll()
-                    .and()
+                .loginPage("/login")
+                .permitAll()
+                .and()
                 .logout()
-                  .permitAll();
+                .permitAll();
     }
 }

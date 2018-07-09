@@ -3,14 +3,12 @@ package com.example.electronicservice.controllers;
 import com.example.electronicservice.exceptions.CategoryNotAllowed;
 import com.example.electronicservice.exceptions.EquipmentNotFound;
 import com.example.electronicservice.exceptions.NameNotAllowed;
-import com.example.electronicservice.models.Attribute;
 import com.example.electronicservice.models.Category;
 import com.example.electronicservice.models.Equipment;
 import com.example.electronicservice.serviceUtils.ConstValues;
 import com.example.electronicservice.serviceUtils.ExceptionReason;
 import com.example.electronicservice.serviceUtils.ServiceMods;
 import com.example.electronicservice.serviceUtils.ServiceUri;
-import com.example.electronicservice.services.AttributeService;
 import com.example.electronicservice.services.CategoryService;
 import com.example.electronicservice.services.EquipmentService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,7 +17,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import javax.servlet.http.HttpServletRequest;
-import java.util.List;
 import java.util.Optional;
 
 @Controller
