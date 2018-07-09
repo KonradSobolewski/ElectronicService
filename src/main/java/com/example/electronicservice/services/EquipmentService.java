@@ -5,6 +5,7 @@ import com.example.electronicservice.models.Equipment;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
+
 import javax.transaction.Transactional;
 import java.util.List;
 import java.util.Optional;
@@ -16,23 +17,23 @@ public class EquipmentService {
     @Autowired
     private EquipmentDao equipmentDao;
 
-    public void save(Equipment equipment){
+    public void save(Equipment equipment) {
         equipmentDao.save(equipment);
     }
 
-    public List<Equipment> findAll(){
+    public List<Equipment> findAll() {
         return equipmentDao.findAll();
     }
 
-    public Optional<Equipment> findByID(Long id){
+    public Optional<Equipment> findByID(Long id) {
         return equipmentDao.findById(id);
     }
 
-    public Optional<Equipment> findByName(String name){
+    public Optional<Equipment> findByName(String name) {
         return equipmentDao.findByName(name);
     }
 
-    public void deleteByID(Long id){
+    public void deleteByID(Long id) {
         equipmentDao.deleteById(id);
     }
 }

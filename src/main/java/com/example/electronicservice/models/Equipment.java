@@ -2,6 +2,7 @@ package com.example.electronicservice.models;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import javax.persistence.*;
 import javax.validation.constraints.Size;
 import java.util.Set;
@@ -31,7 +32,7 @@ public class Equipment {
     private String description;
 
     @JsonBackReference
-    @ManyToOne(fetch = FetchType.LAZY,cascade=CascadeType.MERGE)
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.MERGE)
     @JoinColumn(name = "category_id")
     private Category category;
 
@@ -43,7 +44,7 @@ public class Equipment {
         return attributes;
     }
 
-    public void setAttributes(Set<Attribute> attributes){
+    public void setAttributes(Set<Attribute> attributes) {
         this.attributes = attributes;
     }
 

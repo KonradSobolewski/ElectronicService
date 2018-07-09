@@ -9,6 +9,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+
 import javax.transaction.Transactional;
 import java.util.Optional;
 
@@ -21,11 +22,12 @@ public class CustomUserDetailsService implements UserDetailsService {
     @Autowired
     private PasswordEncoder bCryptPasswordEncoder;
 
-    public void save(User user){
+    public void save(User user) {
         user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
         userDao.save(user);
     }
-    public Optional<User> getByUsername(String username){
+
+    public Optional<User> getByUsername(String username) {
         return userDao.findByUsername(username);
     }
 
@@ -33,7 +35,7 @@ public class CustomUserDetailsService implements UserDetailsService {
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         Optional<User> user = userDao.findByUsername(username);
-        user.orElseThrow(()-> new UsernameNotFoundException("Username not found"));
+        user.orElseThrow(() -> new UsernameNotFoundException("Username not found"));
         return user.map(CustomUserDetails::new).get();
     }
 

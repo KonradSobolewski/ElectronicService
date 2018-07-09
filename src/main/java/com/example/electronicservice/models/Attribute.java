@@ -13,10 +13,10 @@ public class Attribute {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @Column(name = "name",nullable = false)
+    @Column(name = "name", nullable = false)
     private String name;
 
-    @Column(name = "value",nullable = false)
+    @Column(name = "value", nullable = false)
     private String value;
 
     @JsonBackReference

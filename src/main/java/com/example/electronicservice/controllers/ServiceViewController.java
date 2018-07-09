@@ -16,6 +16,7 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+
 import javax.servlet.http.HttpServletRequest;
 import java.util.Optional;
 
@@ -30,14 +31,14 @@ public class ServiceViewController {
 
     @PreAuthorize("hasAnyRole('ADMIN','USER')")
     @GetMapping(value = {"/", ServiceUri.HOME})
-    public String home(HttpServletRequest request){
+    public String home(HttpServletRequest request) {
         request.setAttribute(ConstValues.mode, ServiceMods.HOME);
         return ConstValues.index;
     }
 
     @PreAuthorize("hasAnyRole('ADMIN','USER')")
     @GetMapping(value = ServiceUri.GETALL)
-    public String allEquipments(HttpServletRequest request){
+    public String allEquipments(HttpServletRequest request) {
         request.setAttribute(ConstValues.equipments, equipmentService.findAll());
         request.setAttribute(ConstValues.mode, ServiceMods.GETALL);
         return ConstValues.index;
@@ -45,7 +46,7 @@ public class ServiceViewController {
 
     @PreAuthorize("hasAnyRole('ADMIN')")
     @GetMapping(value = ServiceUri.NEW)
-    public String newEquipment(HttpServletRequest request){
+    public String newEquipment(HttpServletRequest request) {
         request.setAttribute(ConstValues.mode, ServiceMods.NEW);
         return ConstValues.index;
     }
@@ -56,10 +57,10 @@ public class ServiceViewController {
                                 BindingResult bindingResult,
                                 HttpServletRequest request) throws Exception {
         Optional<Category> category = categoryService.getCategoryByName(equipment.getCategory().getName());
-        if(category.isPresent()){
+        if (category.isPresent()) {
             equipment.getCategory().setId(category.get().getId());
             equipmentService.save(equipment);
-        }else{
+        } else {
             throw new CategoryNotAllowed(ExceptionReason.CategoryNotAllowed);
         }
         request.setAttribute(ConstValues.equipments, equipmentService.findAll());
@@ -73,13 +74,13 @@ public class ServiceViewController {
                                   BindingResult bindingResult,
                                   HttpServletRequest request) throws Exception {
         Optional<Category> category = categoryService.getCategoryByName(equipment.getCategory().getName());
-        if(equipmentService.findByName(equipment.getName()).isPresent())
+        if (equipmentService.findByName(equipment.getName()).isPresent())
             throw new NameNotAllowed(ExceptionReason.NameNotAllowed);
-        else if(!category.isPresent()){
+        else if (!category.isPresent()) {
             throw new CategoryNotAllowed(ExceptionReason.CategoryNotAllowed);
         }
         equipment.getCategory().setId(category.get().getId());
-            equipmentService.save(equipment);
+        equipmentService.save(equipment);
         request.setAttribute(ConstValues.equipments, equipmentService.findAll());
         request.setAttribute(ConstValues.mode, ServiceMods.GETALL);
         return ConstValues.index;
@@ -90,7 +91,7 @@ public class ServiceViewController {
     public String updateEquipment(@RequestParam(value = "id") Long id,
                                   HttpServletRequest request) throws Exception {
         Optional<Equipment> equipment = equipmentService.findByID(id);
-        if(!equipment.isPresent())
+        if (!equipment.isPresent())
             throw new EquipmentNotFound(ExceptionReason.EquipmentNotFound);
         request.setAttribute(ConstValues.equipment, equipment.get());
         request.setAttribute(ConstValues.mode, ServiceMods.UPDATE);
@@ -99,16 +100,16 @@ public class ServiceViewController {
 
     @PreAuthorize("hasAnyRole('ADMIN')")
     @GetMapping(value = ServiceUri.DELETE)
-    public String deleteEquipment(@RequestParam(value = "id") Long  id,
+    public String deleteEquipment(@RequestParam(value = "id") Long id,
                                   HttpServletRequest request) throws Exception {
         Optional<Equipment> equipment = equipmentService.findByID(id);
-        if(!equipment.isPresent())
+        if (!equipment.isPresent())
             throw new EquipmentNotFound(ExceptionReason.EquipmentNotFound);
         else
             equipmentService.deleteByID(id);
 
         request.setAttribute(ConstValues.equipments, equipmentService.findAll());
-        request.setAttribute(ConstValues.mode,ServiceMods.GETALL);
+        request.setAttribute(ConstValues.mode, ServiceMods.GETALL);
         return ConstValues.index;
     }
 }

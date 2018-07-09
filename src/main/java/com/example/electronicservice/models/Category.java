@@ -10,11 +10,11 @@ import java.util.Set;
 @Table(name = "category")
 public class Category {
     @Id
-    @Column(name = "id",unique = true)
+    @Column(name = "id", unique = true)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "name", nullable = false ,unique = true)
+    @Column(name = "name", nullable = false, unique = true)
     @Size(max = 45)
     private String name;
 

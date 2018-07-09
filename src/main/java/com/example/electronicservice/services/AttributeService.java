@@ -16,26 +16,27 @@ public class AttributeService {
     @Autowired
     AttributeDao attributeDao;
 
-    public void save(Attribute attribute){ attributeDao.save(attribute);
+    public void save(Attribute attribute) {
+        attributeDao.save(attribute);
     }
 
-    public Optional<List<Attribute>> getAllByEquipmentId(Long id){
+    public Optional<List<Attribute>> getAllByEquipmentId(Long id) {
         return attributeDao.findByEquipment_id(id);
     }
 
-    public List<Attribute> findAll(){
+    public List<Attribute> findAll() {
         return attributeDao.findAll();
     }
 
-    public Optional<Attribute> findByID(Long id){
+    public Optional<Attribute> findByID(Long id) {
         return attributeDao.findById(id);
     }
 
-    public Optional<Attribute> findByName(String name){
+    public Optional<Attribute> findByName(String name) {
         return attributeDao.findByName(name);
     }
 
-    public void deleteByID(Long id){
+    public void deleteByID(Long id) {
         attributeDao.deleteById(id);
     }
 }

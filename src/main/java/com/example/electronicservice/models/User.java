@@ -12,13 +12,13 @@ public class User {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @Column(name = "username",nullable = false,unique = true)
+    @Column(name = "username", nullable = false, unique = true)
     public String username;
 
-    @Column(name = "email",unique = true)
+    @Column(name = "email", unique = true)
     private String email;
 
-    @Column(name = "password",nullable = false)
+    @Column(name = "password", nullable = false)
     private String password;
 
     private String confirmPassword;
@@ -27,10 +27,11 @@ public class User {
     @JoinTable(name = "user_role", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
     private Set<Role> roles;
 
-    public User(){
+    public User() {
 
     }
-    public User( String username,String password,String email, Set roles ){
+
+    public User(String username, String password, String email, Set roles) {
         this.roles = roles;
         this.email = email;
         this.password = password;

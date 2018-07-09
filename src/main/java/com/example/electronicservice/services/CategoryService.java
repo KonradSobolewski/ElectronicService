@@ -15,7 +15,7 @@ public class CategoryService {
     @Autowired
     private CategoryDao categoryDao;
 
-    public Optional<Category> getCategoryByName(String name){
+    public Optional<Category> getCategoryByName(String name) {
         return categoryDao.findByName(name);
     }
 }

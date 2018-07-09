@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 import java.util.Optional;
@@ -27,10 +28,10 @@ public class AttributeController {
 
     @PreAuthorize("hasAnyRole('ADMIN','USER')")
     @GetMapping(value = ServiceUri.ATTRIBUTES)
-    public String showAttributes(@RequestParam(value = "id") Long  id, HttpServletRequest request){
+    public String showAttributes(@RequestParam(value = "id") Long id, HttpServletRequest request) {
         Optional<List<Attribute>> attributeList = attributeService.getAllByEquipmentId(id);
         attributeList.ifPresent(attributes -> request.setAttribute(ConstValues.ATTRIBUTES, attributes));
-        request.setAttribute(ConstValues.mode,ServiceMods.ATTRIBUTE);
+        request.setAttribute(ConstValues.mode, ServiceMods.ATTRIBUTE);
         return ConstValues.index;
     }
 
@@ -39,23 +40,23 @@ public class AttributeController {
     public String createAttribute(@ModelAttribute Attribute attribute,
                                   BindingResult bindingResult,
                                   HttpServletRequest request) throws Exception {
-        if(attributeService.findByID(attribute.getId()).isPresent())
+        if (attributeService.findByID(attribute.getId()).isPresent())
             attributeService.save(attribute);
         else
             throw new AttributeNotFound(ExceptionReason.AttributeNotFound);
-        return showAttributes(attribute.getEquipment().getId(),request);
+        return showAttributes(attribute.getEquipment().getId(), request);
 
     }
 
     @PreAuthorize("hasAnyRole('ADMIN','USER')")
     @GetMapping(value = ServiceUri.DELETEATR)
-    public String deleteAttribute(@RequestParam(value = "id") Long  id,
+    public String deleteAttribute(@RequestParam(value = "id") Long id,
                                   @RequestParam(value = "equipment_id") Long equipment_id,
                                   HttpServletRequest request) throws Exception {
-        if(attributeService.findByID(id).isPresent())
+        if (attributeService.findByID(id).isPresent())
             attributeService.deleteByID(id);
         else
             throw new AttributeNotFound(ExceptionReason.AttributeNotFound);
-        return showAttributes(equipment_id,request);
+        return showAttributes(equipment_id, request);
     }
 }

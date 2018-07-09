@@ -8,7 +8,8 @@ import java.util.List;
 import java.util.Optional;
 
 @Repository
-public interface AttributeDao extends JpaRepository<Attribute,Long> {
-    Optional<Attribute> findByName(String name) ;
+public interface AttributeDao extends JpaRepository<Attribute, Long> {
+    Optional<Attribute> findByName(String name);
+
     Optional<List<Attribute>> findByEquipment_id(Long equipment_id);
 }

@@ -7,6 +7,6 @@ import org.springframework.stereotype.Repository;
 import java.util.Optional;
 
 @Repository
-public interface EquipmentDao extends JpaRepository<Equipment,Long> {
-     Optional<Equipment> findByName(String name) ;
+public interface EquipmentDao extends JpaRepository<Equipment, Long> {
+    Optional<Equipment> findByName(String name);
 }
