@@ -23,10 +23,6 @@ public class Equipment {
     @Column(name = "status", nullable = false)
     private String status;
 
-//    @Temporal(TemporalType.TIMESTAMP)
-//    @Column(name = "updatedAt", nullable = false)
-//    private Date updatedAt;
-
     @Column(name = "description")
     @Size(max = 200)
     private String description;
@@ -39,6 +35,10 @@ public class Equipment {
     @JsonManagedReference
     @OneToMany(mappedBy = "equipment", cascade = CascadeType.ALL)
     private Set<Attribute> attributes;
+
+    @JsonManagedReference
+    @OneToMany(mappedBy = "equipment", cascade = CascadeType.ALL)
+    private Set<Comment> comment;
 
     public Set<Attribute> getAttributes() {
         return attributes;
@@ -55,14 +55,6 @@ public class Equipment {
     public void setStatus(String status) {
         this.status = status;
     }
-
-//    public Date getupdatedAt() {
-//        return updatedAt;
-//    }
-//
-//    public void setupdatedAt(Date updatedAt) {
-//        this.updatedAt = updatedAt;
-//    }
 
     public String getName() {
         return name;
@@ -94,5 +86,13 @@ public class Equipment {
 
     public void setCategory(Category category) {
         this.category = category;
+    }
+
+    public Set<Comment> getComment() {
+        return comment;
+    }
+
+    public void setComment(Set<Comment> comment) {
+        this.comment = comment;
     }
 }

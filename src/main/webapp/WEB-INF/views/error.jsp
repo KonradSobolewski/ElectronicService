@@ -1,6 +1,6 @@
 <!DOCTYPE HTML>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 <html>
 <head>
@@ -22,8 +22,8 @@
 <body>
 <div style="padding: 100px;">
     <div class="jumbotron text-center">
-        <h3 style ="position: center">${errorMsg}</h3>
-        <h3 style ="position: center">
+        <h3 style="position: center">${errorMsg}</h3>
+        <h3 style="position: center">
             <a class="black" href="/home">
                 Return
             </a>
@@ -33,10 +33,11 @@
 
 </div>
 
-<footer >
+<footer>
     <div class="center-block footer-block">
         &copy; 2018 copyright to
-        <a class="black" target="_blank" rel="noopener noreferrer" href="https://github.com/KonradSobolewski">Sobolewski Konrad</a>
+        <a class="black" target="_blank" rel="noopener noreferrer" href="https://github.com/KonradSobolewski">Sobolewski
+            Konrad</a>
     </div>
 </footer>
 </body>

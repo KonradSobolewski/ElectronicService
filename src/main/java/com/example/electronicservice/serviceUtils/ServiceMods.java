@@ -6,4 +6,5 @@ public class ServiceMods {
     public final static String NEW = "MODE_NEW";
     public final static String UPDATE = "MODE_UPDATE";
     public static final String ATTRIBUTE = "MODE_ATTRIBUTE";
+    public static final String COMMENTS = "MODE_COMMENTS";
 }

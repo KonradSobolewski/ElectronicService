@@ -42,4 +42,8 @@ public class CustomUserDetailsService implements UserDetailsService {
     public Optional<User> getByEmail(String email) {
         return userDao.findByEmail(email);
     }
+
+    public Optional<User> getById(Long id) {
+        return userDao.findById(id);
+    }
 }

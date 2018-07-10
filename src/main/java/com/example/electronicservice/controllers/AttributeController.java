@@ -39,24 +39,21 @@ public class AttributeController {
     @PostMapping(value = ServiceUri.CREATEATR)
     public String createAttribute(@ModelAttribute Attribute attribute,
                                   BindingResult bindingResult,
-                                  HttpServletRequest request) throws Exception {
-        if (attributeService.findByID(attribute.getId()).isPresent())
-            attributeService.save(attribute);
-        else
-            throw new AttributeNotFound(ExceptionReason.AttributeNotFound);
+                                  HttpServletRequest request) {
+        attributeService.save(attribute);
         return showAttributes(attribute.getEquipment().getId(), request);
 
     }
 
     @PreAuthorize("hasAnyRole('ADMIN','USER')")
     @GetMapping(value = ServiceUri.DELETEATR)
-    public String deleteAttribute(@RequestParam(value = "id") Long id,
-                                  @RequestParam(value = "equipment_id") Long equipment_id,
+    public String deleteAttribute(@RequestParam(value = "attribute_id") Long attribute_id,
+                                  @RequestParam(value = "id") Long id,
                                   HttpServletRequest request) throws Exception {
-        if (attributeService.findByID(id).isPresent())
-            attributeService.deleteByID(id);
+        if (attributeService.findByID(attribute_id).isPresent())
+            attributeService.deleteByID(attribute_id);
         else
             throw new AttributeNotFound(ExceptionReason.AttributeNotFound);
-        return showAttributes(equipment_id, request);
+        return showAttributes(id, request);
     }
 }

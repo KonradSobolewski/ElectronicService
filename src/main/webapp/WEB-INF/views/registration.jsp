@@ -25,7 +25,7 @@
     <div class="text-center">
         <img src="static/login_image.png" class="rounded resize" alt="...">
     </div>
-    <form:form  method="POST" action="register" class="form-register" modelAttribute="user">
+    <form:form method="POST" action="register" class="form-register" modelAttribute="user">
         <h2 class="form-heading">Electronic Service</h2>
         <h4 class="form-heading">Registration</h4>
         <div class="form-group  ">
@@ -45,14 +45,14 @@
             <div class="input-group mb-3">
                 <div class="input-group-prepend">
                     <span class="input-group-text" id="basic-addon4"> Password </span>
-            </div>
+                </div>
                 <form:input type="password" class="form-control" placeholder="Confirm Password" path="confirmPassword"/>
             </div>
             <div class="input-group mb-3">
                 <div class="input-group-prepend">
                     <span class="input-group-text" id="basic-addon3">Email</span>
                 </div>
-                <form:input  th:field="*{email}"  type="email" class="form-control" placeholder="Email" path="email"/>
+                <form:input th:field="*{email}" type="email" class="form-control" placeholder="Email" path="email"/>
             </div>
             <button class="btn btn-lg btn-info btn-block" type="submit">Register</button>
             <c:if test="${error == 'Invalid'}">
@@ -73,10 +73,11 @@
         </div>
     </form:form>
 </div>
-<footer >
+<footer>
     <div class="center-block footer-block">
         &copy; 2018 copyright to
-        <a class="black" target="_blank" rel="noopener noreferrer" href="https://github.com/KonradSobolewski">Sobolewski Konrad</a>
+        <a class="black" target="_blank" rel="noopener noreferrer" href="https://github.com/KonradSobolewski">Sobolewski
+            Konrad</a>
     </div>
 </footer>
 

@@ -7,4 +7,5 @@ public class ConstValues {
     public final static String equipments = "equipments";
     public static final String ATTRIBUTES = "attributes";
     public static final String ANONYMOUS = "anonymousUser";
+    public static final String COMMENTS = "comments";
 }
